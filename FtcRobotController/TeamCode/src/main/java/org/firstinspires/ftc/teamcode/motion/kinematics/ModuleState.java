@@ -2,10 +2,10 @@ package org.firstinspires.ftc.teamcode.motion.kinematics;
 
 public class ModuleState {
     public double steering;
-    public double power;
+    public double speed;
 
-    public ModuleState(double steering, double power){
+    public ModuleState(double steering, double speed){
         this.steering = steering;
-        this.power = power;
+        this.speed = speed;
     }
 }

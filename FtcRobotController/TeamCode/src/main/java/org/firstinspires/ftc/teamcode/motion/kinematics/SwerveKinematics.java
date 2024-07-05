@@ -34,7 +34,7 @@ public class SwerveKinematics {
         public void normalizeModules(ModuleState[] states, double max_speed){
             double[] powers = new double[states.length];
             for (int i = 1; i <= states.length; i++) {
-                powers[i-1] = states[i-1].power;
+                powers[i-1] = states[i-1].speed;
             }
 
             double max = powers[0];
@@ -44,7 +44,7 @@ public class SwerveKinematics {
 
             if (max > max_speed){
                 for (int i = 1; i <= powers.length; i++) {
-                    states[i-1].power /= max;
+                    states[i-1].speed /= max;
                 }
             }
         }
