@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.swerve;
+package org.firstinspires.ftc.teamcode.subsystems.swerve;
 
 import android.media.midi.MidiOutputPort;
 
@@ -25,6 +25,7 @@ public class SwerveModule {
     public void resetEncoder(){
         steering_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         steering_motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        power_motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     // Stops the motors

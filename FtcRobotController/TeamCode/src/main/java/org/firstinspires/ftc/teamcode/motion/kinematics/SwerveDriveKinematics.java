@@ -2,9 +2,9 @@ package org.firstinspires.ftc.teamcode.motion.kinematics;
 
 import org.firstinspires.ftc.teamcode.motion.coords_system.Translation2D;
 
-public class SwerveKinematics {
+public class SwerveDriveKinematics {
     public Translation2D[] swerve_modules_pos;
-    public SwerveKinematics(Translation2D... swerve_modules_pos){
+    public SwerveDriveKinematics(Translation2D... swerve_modules_pos){
         if (swerve_modules_pos.length < 2){
             throw new IllegalArgumentException("The minimum number of swerves defined mustn't be less than 2.");
         }
@@ -31,22 +31,22 @@ public class SwerveKinematics {
         return states;
     }
 
-        public void normalizeModules(ModuleState[] states, double max_speed){
-            double[] powers = new double[states.length];
-            for (int i = 1; i <= states.length; i++) {
-                powers[i-1] = states[i-1].speed;
-            }
+    public static void normalize(ModuleState[] states, double max_speed){
+        double[] powers = new double[states.length];
+        for (int i = 1; i <= states.length; i++) {
+            powers[i-1] = states[i-1].speed;
+        }
 
-            double max = powers[0];
+        double max = powers[0];
+        for (int i = 1; i <= powers.length; i++) {
+            max = Math.max(max, powers[i-1]);
+        }
+
+        if (max > max_speed){
             for (int i = 1; i <= powers.length; i++) {
-                max = Math.max(max, powers[i-1]);
-            }
-
-            if (max > max_speed){
-                for (int i = 1; i <= powers.length; i++) {
-                    states[i-1].speed /= max;
-                }
+                states[i-1].speed /= max;
             }
         }
+    }
 
 }

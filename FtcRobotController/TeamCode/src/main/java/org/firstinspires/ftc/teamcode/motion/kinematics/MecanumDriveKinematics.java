@@ -2,9 +2,9 @@ package org.firstinspires.ftc.teamcode.motion.kinematics;
 
 import org.firstinspires.ftc.teamcode.motion.coords_system.Translation2D;
 
-public class MecanumKinematics {
+public class MecanumDriveKinematics {
     Translation2D[] modules_pos;
-    public MecanumKinematics(Translation2D... modules_pos){
+    public MecanumDriveKinematics(Translation2D... modules_pos){
         if (modules_pos.length != 4){
             throw new IllegalArgumentException("The number of modules defined must be 4.");
         }
@@ -27,5 +27,23 @@ public class MecanumKinematics {
         states[3] = new ModuleState(0, br_power);
 
         return states;
+    }
+
+    public static void normalize(ModuleState[] states, double max_speed) {
+        double[] powers = new double[states.length];
+        for (int i = 1; i <= states.length; i++) {
+            powers[i - 1] = states[i - 1].speed;
+        }
+
+        double max = powers[0];
+        for (int i = 1; i <= powers.length; i++) {
+            max = Math.max(max, powers[i - 1]);
+        }
+
+        if (max > max_speed) {
+            for (int i = 1; i <= powers.length; i++) {
+                states[i - 1].speed /= max;
+            }
+        }
     }
 }
