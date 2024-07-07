@@ -21,10 +21,10 @@ public class MecanumDriveKinematics {
         double bl_power = (speeds.vy - speeds.vx + speeds.vz) / denominator;
         double br_power = (speeds.vy + speeds.vx - speeds.vz) / denominator;
 
-        states[0] = new ModuleState(0, fl_power);
-        states[1] = new ModuleState(0, fr_power);
-        states[2] = new ModuleState(0, bl_power);
-        states[3] = new ModuleState(0, br_power);
+        states[0] = new ModuleState(-45, fl_power);
+        states[1] = new ModuleState(45, fr_power);
+        states[2] = new ModuleState(45, bl_power);
+        states[3] = new ModuleState(-45, br_power);
 
         return states;
     }

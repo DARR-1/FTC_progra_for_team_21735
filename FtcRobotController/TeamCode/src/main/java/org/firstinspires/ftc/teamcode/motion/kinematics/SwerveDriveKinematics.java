@@ -12,6 +12,10 @@ public class SwerveDriveKinematics {
         this.swerve_modules_pos = swerve_modules_pos;
     }
 
+    public Translation2D[] getSwerveModulesPos() {
+        return swerve_modules_pos;
+    }
+
     public ModuleState[] toSwerveModuleStates(ChassisSpeeds speeds){
         ModuleState[] states = new ModuleState[swerve_modules_pos.length];
         double[] velocity = {0, 0};
